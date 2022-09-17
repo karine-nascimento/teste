@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="song-player">
+        <div class="player-song-mini-cover">
+            <img src="coast.jpg" alt="">
+            <div class="name-song-artist">
+                <p class="name-song">Coast</p>
+                <p class="name-artist">Hailee Steinfeld</p>
+            </div><!--name-song-artist-->
+
+            <div class="song-slider">
+                <div class="current-time">00:00</div>
+                <input type="range" min="1" max="100" value="0" class="seek-bar" onchange="seekTo()">
+                <div class="total-duration">02:46</div>
+            </div><!--song-slider-->
+            <audio src="coast.mp3" id="audio"></audio>
+
+            <div class="buttons">
+
+                <div class="share-track" onclick="shareTrack()">
+                    <img src="share.png" alt="">
+                </div>
+
+                <div class="prev-track" onclick="prevTrack()">
+                    <img src="prev.png" alt="">
+                 </div><!--prev-track-->
+    
+                 <div class="play-track" onclick="playpauseTrack()">
+                    <img src="play.png" alt="">
+                 </div><!--play-pause-->
+
+                 <div class="next-track" onclick="nextTrack()">
+                    <img src="next.png" alt="">
+                 </div><!--next-track-->
+                 
+                 <div class="repeat-track" onclick="repeatTrack()">
+                    <img src="repetir.png" alt="">
+                </div>
+
+                <div class="slider_container">
+                    <img src="volume.png" alt="">
+                     <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()"> 
+                </div>
+
+                <div class="microfone">
+                    <img src="micro.png" alt="">
+                </div>
+
+            </div><!--buttons-->
+        </div><!--player-song-mini-cover-->
+
+ 
+
+      
+
+    </div><!--song-player-->
+
+    <script>
+        let playpause_btn = document.querySelector('.play-track');
+        let next_btn = document.querySelector('.next-track');
+        let prev_btn = document.querySelector('.prev-track');
+
+        let seek_slider = document.querySelector('.seek-bar');
+        let volume_slider = document.querySelector('.volume_slider')
+        let curr_time = document.querySelector('.current-time')
+        let total_duration = document.querySelector('.total-duration');
+
+
+        let track_index = 0;
+        let isPlaying = false; 
+        let updateTimer;
+
+        const track = document.getElementById("audio");
+
+        loadTrack(track_index);
+
+function loadTrack(track_index){
+    clearInterval(updateTimer);
+    reset();
+
+    audio.src = track.music;
+    track.load();
+
+    updateTimer = setInterval(setUpdate, 1000);
+
+    track.addEventListener('ended');
+}
+
+
+        function updateProgress(e) {
+        const { duration, currentTime } = e.srcElement;
+        const progressPerCent = (currentTime / duration) * 100;
+        progress.style.width = `${progressPerCent}%`; }
+
+           function setProgress(e) {
+            const width = this.clientWidth;
+             const clickX = e.offsetX;
+                const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+            }
+
+            playpause_btn.addEventListener("click", () => {
+const isPlaying = musicContainer.classList.contains("play");
+if (isPlaying) {
+pauseSong();
+} else {
+playSong();
+}
+});
+
+
+        function repeatTrack() {
+            let current_index = track_index;
+            playTrack();
+        }
+
+        function playpauseTrack() {
+            isPlaying ? pauseTrack() : playTrack();
+        }
+
+        function playTrack(){
+            audio.play();
+            isPlaying = true;
+            playpause_btn.innerHTML = '<img src="pausa.png" alt="">'
+        }
+
+        function pauseTrack(){
+            audio.pause();
+            isPlaying = false;
+            playpause_btn.innerHTML = '<img src="play.png" alt="">'
+        }
+
+        function seekTo(){
+            let seekto = track.duration * (seek_slider.value / 100);
+            track.currentTime = seekto;
+        }
+
+        function setUpdate() {
+            let seekPosition = 0;
+            if(!isNaN(track.duration)){
+                seekPosition = track.currentTime * (100 / track.duration);
+                seek_slider.value = seekPosition;
+
+                let currentMinutes = Math.floor(track.currentTime / 60);
+                let currentSeconds = Math.floor(track.currentTime - currentMinutes * 60);
+                let durationMinutes = Math.floor(track.duration / 60);
+                let durationSeconds = Math.floor(track.duration - durationMinutes * 60);
+
+                if(currentSeconds < 10) {currentSeconds = "0" + currentSeconds; }
+                if(durationSeconds < 10) {durationSeconds = "0" + durationSeconds; }
+                if(currentMinutes < 10) {currentMinutes = "0" + currentMinutes; }
+                if(durationMinutes < 10) {durationMinutes = "0" + durationMinutes; }
+
+                curr_time.textContent = currentMinutes + ":" + currentSeconds;
+                total_duration.textContent = durationMinutes + ":" + durationMinutes;
+            }
+        }
+
+        
+        
+    </script>
+    </body>
+
+</html>

@@ -1,0 +1,155 @@
+div.song-player {
+    background-color: #0B0B0B;
+    height: 83px;
+    width: 1075px;
+  }
+  
+  .player-song-mini-cover {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+  }
+
+  .player-song-mini-cover img {
+    height: 52px;
+  }
+  div.name-song-artist  {
+    color: white;
+    font-family:'Montserrat', sans-serif;
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+  
+  .name-artist {
+    color: rgba(255, 255, 255, 0.671);
+    font-size: 10px;
+    font-family:'Montserrat', sans-serif;
+    font-weight: 300;
+    margin-top: 4px;
+  }
+  
+  .name-song {
+    color: white;
+    font-size: 12px;
+    font-family:'Montserrat', sans-serif;
+    font-weight: 400;
+    margin-top: 4px;
+  }
+  .song-slider{
+    width: 40%;
+    position: relative;
+    left: 20%;
+    margin-top: 35px;
+}
+
+.seek-bar{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    background: #919191;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.seek-bar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 1px;
+    height: 20px;
+    box-shadow: -400px 0 0 400px #ffffff;
+}
+
+.play-track img {
+  height: 40px;
+}
+
+.next-track img, .prev-track img, .share-track img, .repeat-track img, .slider_container img {
+  height: 20px;
+  margin-top: 10px;
+}
+
+.prev-track img {
+  margin-right: 10px;
+}
+
+.next-track img {
+  margin-left: 10px;
+}
+
+.repeat-track img {
+  margin-left: 30px;
+}
+
+.share-track img {
+  margin-right: 30px;
+}
+
+.buttons {
+  display: flex;
+}
+
+div.buttons {
+  position: relative;
+  right: 90px;
+}
+
+.current-time {
+  color: #919191;
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  left: -45px;
+  top: 3px;
+  font-weight: 600;
+}
+
+.total-duration {
+  color: #919191;
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  right: -45px;
+  top: 3px;
+  font-weight: 600;
+}
+.volume_slider {
+  -webkit-appearance: none;
+    width: 40%;
+    height: 4px;
+    border-radius: 10px;
+    background: #919191;
+    overflow: hidden;
+    cursor: pointer;
+    position: absolute;
+    top: 40px;
+    left: 480px;
+}
+
+.volume_slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 1px;
+  height: 20px;
+  box-shadow: -400px 0 0 400px #ffffff;
+}
+
+.slider_container img {
+  position: absolute;
+    top: 25px;
+    left: 460px;
+    height: 15px;
+}
+
+.microfone img {
+  height: 16px;
+  position: absolute;
+  top: 35px;
+  left: 420px;
+}
+
+.pause-track img {
+  height: 40px;
+}
+
+div.buttons {
+  max-height: 40px;
+}
